@@ -33,9 +33,9 @@ export default function Navbar() {
             <Image 
               src="/logo.png" 
               alt="Denis Craft Technologies Logo" 
-              width={220} 
-              height={60} 
-              className="object-contain h-10 w-auto md:h-12"
+              width={300} 
+              height={100} 
+              className="object-contain h-14 w-auto md:h-20"
               priority
             />
           </Link>
