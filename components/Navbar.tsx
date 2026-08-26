@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Menu, X, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
@@ -28,8 +29,15 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           
           {/* Logo */}
-          <Link href="/" className="text-xl md:text-2xl font-bold tracking-wider text-white">
-            DENIS CRAFT <span className="text-brand-blue">TECH</span>
+          <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
+            <Image 
+              src="/logo.png" 
+              alt="Denis Craft Technologies Logo" 
+              width={220} 
+              height={60} 
+              className="object-contain h-10 w-auto md:h-12"
+              priority
+            />
           </Link>
 
           {/* Nav Links */}
