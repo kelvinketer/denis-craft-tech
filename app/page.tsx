@@ -300,37 +300,42 @@ export default function Home() {
             </p>
           </div>
 
-          <form className="bg-charcoal border border-gray-800 p-8 md:p-12 rounded-sm" onSubmit={(e) => e.preventDefault()}>
+          <form 
+            action="https://formspree.io/f/mnpaewkr" 
+            method="POST" 
+            encType="multipart/form-data"
+            className="bg-charcoal border border-gray-800 p-8 md:p-12 rounded-sm"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               
               {/* Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Your Name *</label>
-                <input type="text" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="John Doe" required />
+                <input type="text" name="name" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="John Doe" required />
               </div>
 
               {/* Business Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Business Name</label>
-                <input type="text" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="Your Company Ltd" />
+                <input type="text" name="business_name" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="Your Company Ltd" />
               </div>
 
               {/* Phone/WhatsApp */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Phone / WhatsApp *</label>
-                <input type="tel" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="+254 7XX XXX XXX" required />
+                <input type="tel" name="phone" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="+254 7XX XXX XXX" required />
               </div>
 
               {/* Location */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Location *</label>
-                <input type="text" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="e.g., Westlands, Nairobi" required />
+                <input type="text" name="location" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="e.g., Westlands, Nairobi" required />
               </div>
 
               {/* Service Required */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Service Required *</label>
-                <select defaultValue="" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors appearance-none" required>
+                <select name="service" defaultValue="" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors appearance-none" required>
                   <option value="" disabled>Select a service...</option>
                   <option value="3d-signage">3D Signage & Shopfronts</option>
                   <option value="office-branding">Corporate & Office Branding</option>
@@ -344,7 +349,7 @@ export default function Home() {
               {/* Budget Range */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Budget Range (Optional)</label>
-                <select defaultValue="" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors appearance-none">
+                <select name="budget" defaultValue="" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors appearance-none">
                   <option value="" disabled>Select budget...</option>
                   <option value="under-50k">Under KES 50,000</option>
                   <option value="50k-100k">KES 50,000 - 100,000</option>
@@ -357,23 +362,23 @@ export default function Home() {
             {/* Additional Details */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-300 mb-2">Approximate Size & Extra Details</label>
-              <textarea className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors min-h-[120px]" placeholder="Tell us about the size of the sign or specific requirements..."></textarea>
+              <textarea name="details" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors min-h-[120px]" placeholder="Tell us about the size of the sign or specific requirements..."></textarea>
             </div>
 
             {/* File Upload Zone */}
             <div className="mb-8">
               <label className="block text-sm font-medium text-gray-300 mb-2">Upload Logo or Photo of Premises</label>
-              <div className="border-2 border-dashed border-gray-700 bg-charcoal-dark rounded-sm p-8 text-center hover:border-brand-blue transition-colors cursor-pointer group">
+              <div className="border-2 border-dashed border-gray-700 bg-charcoal-dark rounded-sm p-8 text-center hover:border-brand-blue transition-colors cursor-pointer group relative">
                 <UploadCloud className="mx-auto text-gray-500 group-hover:text-brand-blue mb-3 transition-colors" size={32} />
-                <p className="text-sm text-gray-400 group-hover:text-gray-300">Drag and drop your files here, or <span className="text-brand-blue font-medium">browse</span></p>
-                <p className="text-xs text-gray-600 mt-2">Supports JPG, PNG, PDF (Max 5MB)</p>
-                <input type="file" className="hidden" />
+                <p className="text-sm text-gray-400 group-hover:text-gray-300">Click to <span className="text-brand-blue font-medium">browse</span> your files</p>
+                <p className="text-xs text-gray-600 mt-2">Supports JPG, PNG, PDF</p>
+                <input type="file" name="attachment" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
               </div>
             </div>
 
             {/* Request Site Visit Checkbox */}
             <div className="mb-8 flex items-center gap-3">
-              <input type="checkbox" id="siteVisit" className="w-5 h-5 accent-brand-blue cursor-pointer" />
+              <input type="checkbox" id="siteVisit" name="request_site_visit" value="Yes" className="w-5 h-5 accent-brand-blue cursor-pointer" />
               <label htmlFor="siteVisit" className="text-gray-300 text-sm cursor-pointer select-none">
                 Yes, I would like to request a site visit for accurate measurements.
               </label>
