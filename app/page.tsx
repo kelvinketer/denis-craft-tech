@@ -13,7 +13,6 @@ import {
   Clock, 
   Headset,
   CheckCircle,
-  UploadCloud,
   Send,
   MessageSquare,
   Ruler,
@@ -303,7 +302,6 @@ export default function Home() {
           <form 
             action="https://formspree.io/f/mnpaewkr" 
             method="POST" 
-            encType="multipart/form-data"
             className="bg-charcoal border border-gray-800 p-8 md:p-12 rounded-sm"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -360,20 +358,9 @@ export default function Home() {
             </div>
 
             {/* Additional Details */}
-            <div className="mb-6">
+            <div className="mb-8">
               <label className="block text-sm font-medium text-gray-300 mb-2">Approximate Size & Extra Details</label>
               <textarea name="details" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors min-h-[120px]" placeholder="Tell us about the size of the sign or specific requirements..."></textarea>
-            </div>
-
-            {/* File Upload Zone */}
-            <div className="mb-8">
-              <label className="block text-sm font-medium text-gray-300 mb-2">Upload Logo or Photo of Premises</label>
-              <div className="border-2 border-dashed border-gray-700 bg-charcoal-dark rounded-sm p-8 text-center hover:border-brand-blue transition-colors cursor-pointer group relative">
-                <UploadCloud className="mx-auto text-gray-500 group-hover:text-brand-blue mb-3 transition-colors" size={32} />
-                <p className="text-sm text-gray-400 group-hover:text-gray-300">Click to <span className="text-brand-blue font-medium">browse</span> your files</p>
-                <p className="text-xs text-gray-600 mt-2">Supports JPG, PNG, PDF</p>
-                <input type="file" name="attachment" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-              </div>
             </div>
 
             {/* Request Site Visit Checkbox */}
