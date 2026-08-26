@@ -141,7 +141,7 @@ export default function Home() {
       <section className="py-24 px-6 md:px-12 lg:px-24 bg-charcoal">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">WHY DENIS CRAFT?</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">WHY DENIS CRAFT TECHNOLOGIES?</h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
               We don't just print signs; we engineer visibility. Here is why top businesses trust us with their branding.
             </p>
