@@ -26,7 +26,7 @@ import {
   Briefcase,
   Coffee,
   ShoppingCart,
-  Home
+  Home as HomeIcon
 } from "lucide-react";
 
 // --- DUMMY DATA FOR PORTFOLIO ---
@@ -228,7 +228,7 @@ export default function Home() {
               { name: "Corporate Offices", icon: Briefcase },
               { name: "Hospitality", icon: Coffee },
               { name: "Retail & Malls", icon: ShoppingCart },
-              { name: "Real Estate", icon: Home },
+              { name: "Real Estate", icon: HomeIcon },
             ].map((industry, i) => {
               const Icon = industry.icon;
               return (
@@ -248,7 +248,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">WHY DENIS CRAFT TECHNOLOGIES?</h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              We don't just print signs; we engineer visibility. Here is why top businesses trust us with their branding.
+              We don&apos;t just print signs; we engineer visibility. Here is why top businesses trust us with their branding.
             </p>
           </div>
 
