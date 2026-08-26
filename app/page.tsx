@@ -14,7 +14,19 @@ import {
   Headset,
   CheckCircle,
   UploadCloud,
-  Send
+  Send,
+  MessageSquare,
+  Ruler,
+  Monitor,
+  CheckSquare,
+  Wrench,
+  Truck,
+  Building2,
+  HeartPulse,
+  Briefcase,
+  Coffee,
+  ShoppingCart,
+  Home
 } from "lucide-react";
 
 // --- DUMMY DATA FOR PORTFOLIO ---
@@ -48,7 +60,7 @@ export default function Home() {
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <main className="min-h-screen bg-charcoal text-white selection:bg-brand-blue selection:text-charcoal-dark">
+    <main className="min-h-screen bg-charcoal text-white selection:bg-brand-blue selection:text-white pb-20 md:pb-0">
       
       {/* 1. HERO SECTION */}
       <section className="relative h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 overflow-hidden">
@@ -76,7 +88,7 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <a href="#quote" className="flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-light text-charcoal-dark font-bold px-8 py-4 rounded-sm transition-all duration-300 transform hover:scale-105">
+            <a href="#quote" className="flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-light text-white font-bold px-8 py-4 rounded-sm transition-all duration-300 transform hover:scale-105">
               GET A FREE QUOTE
               <ArrowRight size={20} />
             </a>
@@ -100,7 +112,7 @@ export default function Home() {
                   onClick={() => setActiveFilter(category)}
                   className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     activeFilter === category
-                      ? "bg-brand-blue text-charcoal-dark"
+                      ? "bg-brand-blue text-white"
                       : "bg-charcoal border border-gray-700 text-gray-300 hover:border-brand-blue hover:text-brand-blue"
                   }`}
                 >
@@ -137,8 +149,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. TRUST SECTION (WHY DENIS CRAFT) */}
+      {/* 3. HOW WE WORK (PROCESS) SECTION */}
       <section className="py-24 px-6 md:px-12 lg:px-24 bg-charcoal">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">HOW WE WORK</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+              A rigorous, standardized engineering and fabrication pipeline from concept to completion.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+            {/* Step 1 */}
+            <div className="bg-charcoal-dark border border-gray-800 p-8 rounded-sm hover:border-brand-blue/40 transition-colors relative">
+              <div className="text-brand-blue/20 font-black text-6xl absolute top-4 right-6 z-0">01</div>
+              <MessageSquare className="text-brand-blue mb-6 relative z-10" size={32} />
+              <h3 className="text-xl font-bold mb-3 relative z-10">Project Inquiry</h3>
+              <p className="text-gray-400 text-sm leading-relaxed relative z-10">We begin by understanding your brand vision, corporate guidelines, and specific project requirements.</p>
+            </div>
+            
+            {/* Step 2 */}
+            <div className="bg-charcoal-dark border border-gray-800 p-8 rounded-sm hover:border-brand-blue/40 transition-colors relative">
+              <div className="text-brand-blue/20 font-black text-6xl absolute top-4 right-6 z-0">02</div>
+              <Ruler className="text-brand-blue mb-6 relative z-10" size={32} />
+              <h3 className="text-xl font-bold mb-3 relative z-10">Site Assessment</h3>
+              <p className="text-gray-400 text-sm leading-relaxed relative z-10">Our technical team conducts detailed site visits to capture precise measurements and evaluate installation surfaces.</p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-charcoal-dark border border-gray-800 p-8 rounded-sm hover:border-brand-blue/40 transition-colors relative">
+              <div className="text-brand-blue/20 font-black text-6xl absolute top-4 right-6 z-0">03</div>
+              <Monitor className="text-brand-blue mb-6 relative z-10" size={32} />
+              <h3 className="text-xl font-bold mb-3 relative z-10">3D Engineering & Costing</h3>
+              <p className="text-gray-400 text-sm leading-relaxed relative z-10">We develop accurate 3D renders and technical specifications alongside a transparent, detailed quotation.</p>
+            </div>
+
+            {/* Step 4 */}
+            <div className="bg-charcoal-dark border border-gray-800 p-8 rounded-sm hover:border-brand-blue/40 transition-colors relative">
+              <div className="text-brand-blue/20 font-black text-6xl absolute top-4 right-6 z-0">04</div>
+              <CheckSquare className="text-brand-blue mb-6 relative z-10" size={32} />
+              <h3 className="text-xl font-bold mb-3 relative z-10">Client Sign-Off</h3>
+              <p className="text-gray-400 text-sm leading-relaxed relative z-10">You review the prototypes and costs. Production commences immediately upon your final approval and deposit.</p>
+            </div>
+
+            {/* Step 5 */}
+            <div className="bg-charcoal-dark border border-gray-800 p-8 rounded-sm hover:border-brand-blue/40 transition-colors relative">
+              <div className="text-brand-blue/20 font-black text-6xl absolute top-4 right-6 z-0">05</div>
+              <Wrench className="text-brand-blue mb-6 relative z-10" size={32} />
+              <h3 className="text-xl font-bold mb-3 relative z-10">Custom Fabrication</h3>
+              <p className="text-gray-400 text-sm leading-relaxed relative z-10">Utilizing CNC routing and premium materials, our production team meticulously crafts your signage in-house.</p>
+            </div>
+
+            {/* Step 6 */}
+            <div className="bg-brand-blue p-8 rounded-sm text-white relative shadow-lg transform hover:-translate-y-1 transition-transform">
+              <div className="text-white/20 font-black text-6xl absolute top-4 right-6 z-0">06</div>
+              <Truck className="text-white mb-6 relative z-10" size={32} />
+              <h3 className="text-xl font-bold mb-3 relative z-10">Professional Installation</h3>
+              <p className="text-blue-100 text-sm leading-relaxed relative z-10">Our certified technicians ensure a safe, flawless, and highly durable installation on-site.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. INDUSTRIES WE SERVE SECTION */}
+      <section className="py-24 px-6 md:px-12 lg:px-24 bg-charcoal-dark border-t border-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">INDUSTRIES WE SERVE</h2>
+              <p className="text-gray-400 max-w-xl text-lg">Delivering high-impact corporate visibility across all major sectors in Kenya.</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {[
+              { name: "Banking & Finance", icon: Building2 },
+              { name: "Healthcare", icon: HeartPulse },
+              { name: "Corporate Offices", icon: Briefcase },
+              { name: "Hospitality", icon: Coffee },
+              { name: "Retail & Malls", icon: ShoppingCart },
+              { name: "Real Estate", icon: Home },
+            ].map((industry, i) => {
+              const Icon = industry.icon;
+              return (
+                <div key={i} className="bg-charcoal border border-gray-800 p-6 rounded-sm flex flex-col items-center justify-center text-center hover:bg-brand-blue/10 hover:border-brand-blue/50 transition-all group cursor-pointer aspect-square">
+                  <Icon className="text-gray-500 group-hover:text-brand-blue mb-4 transition-colors" size={36} />
+                  <span className="font-semibold text-sm text-gray-300 group-hover:text-white">{industry.name}</span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. TRUST SECTION (WHY DENIS CRAFT) */}
+      <section className="py-24 px-6 md:px-12 lg:px-24 bg-charcoal border-t border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">WHY DENIS CRAFT TECHNOLOGIES?</h2>
@@ -163,7 +268,7 @@ export default function Home() {
               );
             })}
             
-            <div className="bg-brand-blue p-8 rounded-sm flex flex-col justify-center items-start text-charcoal-dark">
+            <div className="bg-brand-blue p-8 rounded-sm flex flex-col justify-center items-start text-white shadow-xl">
               <h3 className="text-2xl font-bold mb-4">Ready to stand out?</h3>
               <a href="#quote" className="flex items-center gap-2 font-bold hover:gap-4 transition-all">
                 Start Your Project <ArrowRight size={20} />
@@ -184,7 +289,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. LEAD GENERATION FORM */}
+      {/* 6. LEAD GENERATION FORM */}
       <section id="quote" className="py-24 px-6 md:px-12 lg:px-24 bg-charcoal-dark border-t border-gray-800">
         <div className="max-w-4xl mx-auto">
           
@@ -275,7 +380,7 @@ export default function Home() {
             </div>
 
             {/* Submit Button */}
-            <button type="submit" className="w-full bg-brand-blue hover:bg-brand-blue-light text-charcoal-dark font-bold text-lg px-8 py-4 rounded-sm transition-all duration-300 flex justify-center items-center gap-2 transform hover:scale-[1.02]">
+            <button type="submit" className="w-full bg-brand-blue hover:bg-brand-blue-light text-white font-bold text-lg px-8 py-4 rounded-sm transition-all duration-300 flex justify-center items-center gap-2 transform hover:scale-[1.02]">
               Submit Enquiry <Send size={20} />
             </button>
 
