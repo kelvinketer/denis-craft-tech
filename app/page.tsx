@@ -34,12 +34,42 @@ import {
 const categories = ["All", "3D Signage", "Shopfronts", "Offices", "Vehicles", "Printing", "Corporate Branding"];
 
 const projects = [
-  { id: 1, title: "Illuminated Channel Letters", category: "3D Signage" },
-  { id: 2, title: "Modern Office Reception", category: "Offices" },
-  { id: 3, title: "Fleet Delivery Van Wrap", category: "Vehicles" },
-  { id: 4, title: "Retail Shopfront Makeover", category: "Shopfronts" },
-  { id: 5, title: "Large Format Billboard", category: "Printing" },
-  { id: 6, title: "Premium Acrylic Logo", category: "3D Signage" },
+  { 
+    id: 1, 
+    title: "Illuminated Channel Letters", 
+    category: "3D Signage",
+    image: "https://images.unsplash.com/photo-1563206767-5b18f218e8de?q=80&w=2069&auto=format&fit=crop"
+  },
+  { 
+    id: 2, 
+    title: "Modern Office Reception", 
+    category: "Offices",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
+  },
+  { 
+    id: 3, 
+    title: "Fleet Delivery Van Wrap", 
+    category: "Vehicles",
+    image: "https://images.unsplash.com/photo-1566312648785-502a3a0e1903?q=80&w=2040&auto=format&fit=crop"
+  },
+  { 
+    id: 4, 
+    title: "Retail Shopfront Makeover", 
+    category: "Shopfronts",
+    image: "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=2070&auto=format&fit=crop"
+  },
+  { 
+    id: 5, 
+    title: "Large Format Billboard", 
+    category: "Printing",
+    image: "https://images.unsplash.com/photo-1559132145-2dbd73c7e738?q=80&w=2070&auto=format&fit=crop"
+  },
+  { 
+    id: 6, 
+    title: "Premium Acrylic Logo", 
+    category: "3D Signage",
+    image: "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?q=80&w=2070&auto=format&fit=crop"
+  },
 ];
 
 // --- DATA FOR TRUST SECTION ---
@@ -243,8 +273,12 @@ export default function Home() {
                   className="group cursor-pointer"
                 >
                   <div className="w-full h-64 bg-charcoal flex flex-col items-center justify-center border border-gray-800 rounded-sm mb-4 group-hover:border-brand-blue/50 transition-colors overflow-hidden relative">
-                    <ImageIcon size={48} className="text-gray-600 group-hover:scale-110 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal-dark/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal-dark/95 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                        <span className="text-brand-blue font-semibold flex items-center gap-2">View Project <ArrowRight size={16}/></span>
                     </div>
                   </div>
