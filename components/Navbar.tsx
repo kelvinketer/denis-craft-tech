@@ -43,6 +43,7 @@ export default function Navbar() {
           {/* Nav Links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
             <Link href="/" className="hover:text-brand-blue transition-colors">Home</Link>
+            <Link href="/about" className="hover:text-brand-blue transition-colors">About Us</Link>
             
             {/* Services Dropdown */}
             <div className="relative group py-2">
@@ -103,6 +104,13 @@ export default function Navbar() {
               className="text-lg font-medium text-gray-200 hover:text-brand-blue"
             >
               Home
+            </Link>
+            <Link 
+              href="/about" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-lg font-medium text-gray-200 hover:text-brand-blue"
+            >
+              About Us
             </Link>
             
             {/* Mobile Services section */}
