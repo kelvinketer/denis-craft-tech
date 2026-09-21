@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   ArrowRight, 
@@ -25,7 +25,9 @@ import {
   Briefcase,
   Coffee,
   ShoppingCart,
-  Home as HomeIcon
+  Home as HomeIcon,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 
 // --- DUMMY DATA FOR PORTFOLIO ---
@@ -53,6 +55,59 @@ const features = [
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // --- DATA FOR HERO SLIDER ---
+  const slides = [
+    {
+      title1: "MAKE YOUR",
+      title2: "BRAND ",
+      highlight: "VISIBLE.",
+      desc: "Premium Signage & Branding Solutions for Businesses. From concept to installation, we make your brand impossible to ignore.",
+      btn1: "GET A FREE QUOTE",
+      btn2: "REQUEST SITE VISIT",
+      showMapIcon: true,
+    },
+    {
+      title1: "POWERFUL",
+      title2: "EVENT ",
+      highlight: "PRESENCE.",
+      desc: "Transform ordinary spaces into powerful brand experiences with our custom exhibition stands, banners, and activation materials.",
+      btn1: "VIEW PORTFOLIO",
+      btn2: "CONTACT SALES",
+      showMapIcon: false,
+    },
+    {
+      title1: "MEMORABLE",
+      title2: "BRAND ",
+      highlight: "TOUCHPOINTS.",
+      desc: "Premium UV-branded promotional products and executive gift sets that keep your business visible in your clients' hands every day.",
+      btn1: "EXPLORE GIFTS",
+      btn2: "GET A QUOTE",
+      showMapIcon: false,
+    },
+    {
+      title1: "MOBILE",
+      title2: "BRAND ",
+      highlight: "VISIBILITY.",
+      desc: "Turn your fleet into moving billboards with our high-quality, durable vehicle branding and wrapping solutions across Nairobi.",
+      btn1: "LEARN MORE",
+      btn2: "REQUEST SITE VISIT",
+      showMapIcon: true,
+    }
+  ];
+
+  // Auto-play slider logic
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  const goToSlide = (index: number) => setCurrentSlide(index);
 
   const filteredProjects = activeFilter === "All" 
     ? projects 
@@ -61,41 +116,74 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-charcoal text-white selection:bg-brand-blue selection:text-white pb-20 md:pb-0">
       
-      {/* 1. HERO SECTION */}
-      <section className="relative h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 overflow-hidden">
+      {/* 1. HERO SLIDER SECTION */}
+      <section className="relative h-screen flex flex-col justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal-dark to-charcoal/80 z-0" />
-        <div className="relative z-10 max-w-4xl pt-16">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
-          >
-            MAKE YOUR BRAND <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-blue-light">VISIBLE.</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed"
-          >
-            Premium Signage & Branding Solutions for Businesses. From concept to installation, we make your brand impossible to ignore.
-          </motion.p>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            <a href="#quote" className="flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-light text-white font-bold px-8 py-4 rounded-sm transition-all duration-300 transform hover:scale-105">
-              GET A FREE QUOTE
-              <ArrowRight size={20} />
-            </a>
-            <a href="#quote" className="flex items-center justify-center gap-2 border-2 border-white/20 hover:border-brand-blue hover:text-brand-blue bg-transparent text-white font-bold px-8 py-4 rounded-sm transition-all duration-300">
-              REQUEST SITE VISIT
-              <MapPin size={20} />
-            </a>
-          </motion.div>
+        
+        <div className="relative z-10 w-full h-full flex flex-col justify-center pt-20">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 w-full relative">
+            <div className="relative h-[400px] flex items-center">
+              {slides.map((slide, index) => (
+                <div 
+                  key={index}
+                  className={`absolute top-0 left-0 w-full h-full flex flex-col justify-center transition-all duration-700 ease-in-out ${
+                    index === currentSlide ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-8 pointer-events-none"
+                  }`}
+                >
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
+                    {slide.title1} <br />
+                    {slide.title2} 
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-blue-light">{slide.highlight}</span>
+                  </h1>
+                  <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed">
+                    {slide.desc}
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <a href="#quote" className="flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-light text-white font-bold px-8 py-4 rounded-sm transition-all duration-300 transform hover:scale-105">
+                      {slide.btn1} <ArrowRight size={20} />
+                    </a>
+                    <a href="#quote" className="flex items-center justify-center gap-2 border-2 border-white/20 hover:border-brand-blue hover:text-brand-blue bg-transparent text-white font-bold px-8 py-4 rounded-sm transition-all duration-300">
+                      {slide.btn2} {slide.showMapIcon && <MapPin size={20} />}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Slider Controls */}
+        <div className="absolute bottom-12 left-0 w-full z-20">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`transition-all duration-300 rounded-full ${
+                    index === currentSlide 
+                      ? "w-8 h-2 bg-brand-blue" 
+                      : "w-2 h-2 bg-gray-600 hover:bg-gray-400"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={prevSlide}
+                className="p-3 rounded-sm border border-gray-700 text-gray-400 hover:text-white hover:border-brand-blue transition-colors bg-charcoal-dark/80 backdrop-blur-sm"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button 
+                onClick={nextSlide}
+                className="p-3 rounded-sm border border-gray-700 text-gray-400 hover:text-white hover:border-brand-blue transition-colors bg-charcoal-dark/80 backdrop-blur-sm"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -159,7 +247,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
-            {/* Step 1 */}
             <div className="bg-charcoal-dark border border-gray-800 p-8 rounded-sm hover:border-brand-blue/40 transition-colors relative">
               <div className="text-brand-blue/20 font-black text-6xl absolute top-4 right-6 z-0">01</div>
               <MessageSquare className="text-brand-blue mb-6 relative z-10" size={32} />
@@ -167,7 +254,6 @@ export default function Home() {
               <p className="text-gray-400 text-sm leading-relaxed relative z-10">We begin by understanding your brand vision, corporate guidelines, and specific project requirements.</p>
             </div>
             
-            {/* Step 2 */}
             <div className="bg-charcoal-dark border border-gray-800 p-8 rounded-sm hover:border-brand-blue/40 transition-colors relative">
               <div className="text-brand-blue/20 font-black text-6xl absolute top-4 right-6 z-0">02</div>
               <Ruler className="text-brand-blue mb-6 relative z-10" size={32} />
@@ -175,7 +261,6 @@ export default function Home() {
               <p className="text-gray-400 text-sm leading-relaxed relative z-10">Our technical team conducts detailed site visits to capture precise measurements and evaluate installation surfaces.</p>
             </div>
 
-            {/* Step 3 */}
             <div className="bg-charcoal-dark border border-gray-800 p-8 rounded-sm hover:border-brand-blue/40 transition-colors relative">
               <div className="text-brand-blue/20 font-black text-6xl absolute top-4 right-6 z-0">03</div>
               <Monitor className="text-brand-blue mb-6 relative z-10" size={32} />
@@ -183,7 +268,6 @@ export default function Home() {
               <p className="text-gray-400 text-sm leading-relaxed relative z-10">We develop accurate 3D renders and technical specifications alongside a transparent, detailed quotation.</p>
             </div>
 
-            {/* Step 4 */}
             <div className="bg-charcoal-dark border border-gray-800 p-8 rounded-sm hover:border-brand-blue/40 transition-colors relative">
               <div className="text-brand-blue/20 font-black text-6xl absolute top-4 right-6 z-0">04</div>
               <CheckSquare className="text-brand-blue mb-6 relative z-10" size={32} />
@@ -191,7 +275,6 @@ export default function Home() {
               <p className="text-gray-400 text-sm leading-relaxed relative z-10">You review the prototypes and costs. Production commences immediately upon your final approval and deposit.</p>
             </div>
 
-            {/* Step 5 */}
             <div className="bg-charcoal-dark border border-gray-800 p-8 rounded-sm hover:border-brand-blue/40 transition-colors relative">
               <div className="text-brand-blue/20 font-black text-6xl absolute top-4 right-6 z-0">05</div>
               <Wrench className="text-brand-blue mb-6 relative z-10" size={32} />
@@ -199,7 +282,6 @@ export default function Home() {
               <p className="text-gray-400 text-sm leading-relaxed relative z-10">Utilizing CNC routing and premium materials, our production team meticulously crafts your signage in-house.</p>
             </div>
 
-            {/* Step 6 */}
             <div className="bg-brand-blue p-8 rounded-sm text-white relative shadow-lg transform hover:-translate-y-1 transition-transform">
               <div className="text-white/20 font-black text-6xl absolute top-4 right-6 z-0">06</div>
               <Truck className="text-white mb-6 relative z-10" size={32} />
@@ -291,7 +373,6 @@ export default function Home() {
       {/* 6. LEAD GENERATION FORM */}
       <section id="quote" className="py-24 px-6 md:px-12 lg:px-24 bg-charcoal-dark border-t border-gray-800">
         <div className="max-w-4xl mx-auto">
-          
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">GET A FREE QUOTE</h2>
             <p className="text-gray-400 text-lg">
@@ -305,32 +386,22 @@ export default function Home() {
             className="bg-charcoal border border-gray-800 p-8 md:p-12 rounded-sm"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              
-              {/* Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Your Name *</label>
                 <input type="text" name="name" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="John Doe" required />
               </div>
-
-              {/* Business Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Business Name</label>
                 <input type="text" name="business_name" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="Your Company Ltd" />
               </div>
-
-              {/* Phone/WhatsApp */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Phone / WhatsApp *</label>
                 <input type="tel" name="phone" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="+254 7XX XXX XXX" required />
               </div>
-
-              {/* Location */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Location *</label>
                 <input type="text" name="location" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors" placeholder="e.g., Westlands, Nairobi" required />
               </div>
-
-              {/* Service Required */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Service Required *</label>
                 <select name="service" defaultValue="" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors appearance-none" required>
@@ -343,8 +414,6 @@ export default function Home() {
                   <option value="design">Design & Brand Development</option>
                 </select>
               </div>
-
-              {/* Budget Range */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Budget Range (Optional)</label>
                 <select name="budget" defaultValue="" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors appearance-none">
@@ -356,30 +425,22 @@ export default function Home() {
                 </select>
               </div>
             </div>
-
-            {/* Additional Details */}
             <div className="mb-8">
               <label className="block text-sm font-medium text-gray-300 mb-2">Approximate Size & Extra Details</label>
               <textarea name="details" className="w-full bg-charcoal-dark border border-gray-700 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-brand-blue transition-colors min-h-[120px]" placeholder="Tell us about the size of the sign or specific requirements..."></textarea>
             </div>
-
-            {/* Request Site Visit Checkbox */}
             <div className="mb-8 flex items-center gap-3">
               <input type="checkbox" id="siteVisit" name="request_site_visit" value="Yes" className="w-5 h-5 accent-brand-blue cursor-pointer" />
               <label htmlFor="siteVisit" className="text-gray-300 text-sm cursor-pointer select-none">
                 Yes, I would like to request a site visit for accurate measurements.
               </label>
             </div>
-
-            {/* Submit Button */}
             <button type="submit" className="w-full bg-brand-blue hover:bg-brand-blue-light text-white font-bold text-lg px-8 py-4 rounded-sm transition-all duration-300 flex justify-center items-center gap-2 transform hover:scale-[1.02]">
               Submit Enquiry <Send size={20} />
             </button>
-
           </form>
         </div>
       </section>
-      
     </main>
   );
 }
