@@ -67,6 +67,7 @@ export default function Home() {
       btn1: "GET A FREE QUOTE",
       btn2: "REQUEST SITE VISIT",
       showMapIcon: true,
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
     },
     {
       title1: "POWERFUL",
@@ -76,6 +77,7 @@ export default function Home() {
       btn1: "VIEW PORTFOLIO",
       btn2: "CONTACT SALES",
       showMapIcon: false,
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
     },
     {
       title1: "MEMORABLE",
@@ -85,6 +87,7 @@ export default function Home() {
       btn1: "EXPLORE GIFTS",
       btn2: "GET A QUOTE",
       showMapIcon: false,
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
     },
     {
       title1: "MOBILE",
@@ -94,6 +97,7 @@ export default function Home() {
       btn1: "LEARN MORE",
       btn2: "REQUEST SITE VISIT",
       showMapIcon: true,
+      image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=2070&auto=format&fit=crop"
     }
   ];
 
@@ -117,8 +121,25 @@ export default function Home() {
     <main className="min-h-screen bg-charcoal text-white selection:bg-brand-blue selection:text-white pb-20 md:pb-0">
       
       {/* 1. HERO SLIDER SECTION */}
-      <section className="relative h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal-dark to-charcoal/80 z-0" />
+      <section className="relative h-screen flex flex-col justify-center overflow-hidden bg-charcoal-dark">
+        
+        {/* Background Images Layer */}
+        {slides.map((slide, index) => (
+          <div 
+            key={`bg-${index}`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url('${slide.image}')` }}
+            />
+          </div>
+        ))}
+
+        {/* Dark Gradient Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal-dark/95 via-charcoal-dark/80 to-charcoal-dark/20 z-0" />
         
         <div className="relative z-10 w-full h-full flex flex-col justify-center pt-20">
           <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 w-full relative">
@@ -135,14 +156,14 @@ export default function Home() {
                     {slide.title2} 
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-blue-light">{slide.highlight}</span>
                   </h1>
-                  <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed">
+                  <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed drop-shadow-md">
                     {slide.desc}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <a href="#quote" className="flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-light text-white font-bold px-8 py-4 rounded-sm transition-all duration-300 transform hover:scale-105">
+                    <a href="#quote" className="flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-light text-white font-bold px-8 py-4 rounded-sm transition-all duration-300 transform hover:scale-105 shadow-lg shadow-brand-blue/20">
                       {slide.btn1} <ArrowRight size={20} />
                     </a>
-                    <a href="#quote" className="flex items-center justify-center gap-2 border-2 border-white/20 hover:border-brand-blue hover:text-brand-blue bg-transparent text-white font-bold px-8 py-4 rounded-sm transition-all duration-300">
+                    <a href="#quote" className="flex items-center justify-center gap-2 border-2 border-white/20 hover:border-brand-blue hover:text-brand-blue bg-transparent text-white font-bold px-8 py-4 rounded-sm transition-all duration-300 backdrop-blur-sm">
                       {slide.btn2} {slide.showMapIcon && <MapPin size={20} />}
                     </a>
                   </div>
@@ -163,7 +184,7 @@ export default function Home() {
                   className={`transition-all duration-300 rounded-full ${
                     index === currentSlide 
                       ? "w-8 h-2 bg-brand-blue" 
-                      : "w-2 h-2 bg-gray-600 hover:bg-gray-400"
+                      : "w-2 h-2 bg-white/40 hover:bg-white/60"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -172,13 +193,13 @@ export default function Home() {
             <div className="flex items-center gap-2">
               <button 
                 onClick={prevSlide}
-                className="p-3 rounded-sm border border-gray-700 text-gray-400 hover:text-white hover:border-brand-blue transition-colors bg-charcoal-dark/80 backdrop-blur-sm"
+                className="p-3 rounded-sm border border-white/20 text-white hover:border-brand-blue transition-colors bg-charcoal-dark/50 backdrop-blur-md"
               >
                 <ChevronLeft size={20} />
               </button>
               <button 
                 onClick={nextSlide}
-                className="p-3 rounded-sm border border-gray-700 text-gray-400 hover:text-white hover:border-brand-blue transition-colors bg-charcoal-dark/80 backdrop-blur-sm"
+                className="p-3 rounded-sm border border-white/20 text-white hover:border-brand-blue transition-colors bg-charcoal-dark/50 backdrop-blur-md"
               >
                 <ChevronRight size={20} />
               </button>
